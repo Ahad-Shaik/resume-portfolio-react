@@ -1,0 +1,306 @@
+.skills-section {
+  background-color: var(--bg-color);
+  padding: 80px 0;
+  transition: background-color 0.3s ease;
+  position: relative;
+}
+
+.skills-wrapper {
+  width: 100%;
+}
+
+.skills-grid-container {
+  width: 100%;
+}
+
+.skill-category-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.expanded {
+    .category-header {
+      box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+    }
+  }
+}
+
+.skills-section.visible .skill-category-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.category-header {
+  position: relative;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  text-align: left;
+  border: none;
+  cursor: pointer;
+
+  &.category-expanded {
+    transform: scale(1.02);
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  &:active {
+    transform: scale(0.98);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 25px rgba(99, 102, 241, 0.6), 0 0 20px rgba(99, 102, 241, 0.3);
+  }
+}
+
+.chevron-container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.skills-list-container {
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+  max-height: 0;
+  opacity: 0;
+
+  &.expanded {
+    max-height: 500px;
+    opacity: 1;
+  }
+
+  &.collapsed {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+.skills-list {
+  position: relative;
+}
+
+.skill-item {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top center;
+
+  &.skill-hidden {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+    pointer-events: none;
+  }
+
+  &.skill-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: all;
+    animation: slideInSkill 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+}
+
+@keyframes slideInSkill {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+  }
+  50% {
+    transform: translateY(2px) scale(1.02);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.skill-icon-wrapper {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.2), transparent);
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+  }
+}
+
+.skill-item:hover .skill-icon-wrapper {
+  transform: scale(1.1) rotate(5deg);
+  
+  &::before {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+.skill-icon {
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.skill-item:hover .skill-icon {
+  transform: scale(1.2) rotate(-5deg);
+}
+
+/* Learning Backend Section */
+.learning-backend-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.skills-section.visible .learning-backend-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.learning-card {
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(99, 102, 241, 0.2);
+    border-color: var(--primary-color);
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2xl 2xl 0 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+[data-theme="dark"] .learning-card {
+  border-color: rgba(129, 140, 248, 0.4);
+  
+  &:hover {
+    box-shadow: 0 20px 40px rgba(129, 140, 248, 0.3);
+  }
+}
+
+.learning-icon-wrapper {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.learning-skills-list {
+  position: relative;
+}
+
+.learning-skill-item {
+  position: relative;
+}
+
+.skill-progress-wrapper {
+  width: 100%;
+  height: 10px;
+  background: var(--bg-light);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-color);
+}
+
+.skill-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+.skill-progress-shine {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  animation: progressShine 2s infinite;
+}
+
+@keyframes progressShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+.section-label {
+  display: inline-block;
+  padding: 0.5rem 1.5rem;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1), rgba(139, 92, 246, 0.1));
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 50px;
+  color: var(--primary-color);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+[data-theme="dark"] .section-label {
+  background: linear-gradient(135deg, rgba(129, 140, 248, 0.15), rgba(167, 139, 250, 0.15));
+  border-color: rgba(129, 140, 248, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .skills-section {
+    padding: 60px 0;
+  }
+
+  .skills-grid-container .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-section {
+    padding: 60px 0;
+  }
+
+  .skills-grid-container .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-list-container.expanded {
+    max-height: 600px;
+  }
+
+  .learning-card {
+    padding: 1.5rem !important;
+  }
+
+  .learning-icon-wrapper {
+    padding: 0.75rem !important;
+  }
+}
